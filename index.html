@@ -34,7 +34,7 @@
         </div>
         <div class="right">
           <div class="placeholder-box large">
-            <img src="IMG_79890.jpg" alt="Just Me">
+            <img src="IMG_79890.JPG" alt="Just Me">
           </div>
         </div>
       </div>
@@ -126,16 +126,25 @@
           <div class="contact-info">
             <div>
               <strong>Email:</strong>
-              <span>johnkienpilar@gmail.com</span>
+              <a href="mailto:johnkienpilar@gmail.com">johnkienpilar@gmail.com</a>
+
             </div>
             <div>
               <strong>Phone:</strong>
-              <span>+63 946 909 1685</span>
+              <a href="09469091685">+63 946 909 1685</a>
+            </div>   
+            <div>
+              <strong>Facebook:</strong>
+                <a href="https://www.facebook.com/p.john.kien" target="_blank">
+                  Pilar John Kien
+                 </a>
             </div>
             <div>
               <strong>Location:</strong>
               <span>Baguio City, Philippines</span>
             </div>
+         
+          </a>
           </div>
           <div>
             <form class="form" aria-label="Contact form (non-functional placeholder)">
@@ -168,24 +177,54 @@
     </div>
   </footer>
 
- </script>
-  <script>
-  const observer = new IntersectionObserver((entries, observer) => {
+<button id="scrollBtn">↓</button>
+
+<script>
+
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('show');
-        observer.unobserve(entry.target);
+      } else {
+        entry.target.classList.remove('show');
       }
     });
   }, {
-    threshold: 0.2
+    threshold: 0.5
   });
 
-  document.querySelectorAll('.edu-card, .about-card').forEach(card => {
-    observer.observe(card);
+ 
+  document.querySelectorAll('.panel').forEach(section => {
+    section.classList.add('hidden');
+    observer.observe(section);
   });
+
+   const btn = document.getElementById("scrollBtn");
+
+  window.addEventListener("scroll", () => {
+  const halfwayPoint = document.body.scrollHeight / 2;
+
+
+  if (window.scrollY > halfwayPoint) {
+    btn.textContent = "↑";
+  } else {
+    btn.textContent = "↓";
+  }
+});
+
+btn.addEventListener("click", () => {
+  if (btn.textContent.includes("↑")) {
+    
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+   
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  }
+});
 </script>
+
+
+
 
 </body>
 </html>
-
